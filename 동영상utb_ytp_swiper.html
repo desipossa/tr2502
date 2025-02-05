@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 mp4</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./lib/css/jquery.mb.YTPlayer.min.css">
+
+
+    <style>
+        .main_visual_slide .itm {
+            height: 100vh;
+        }
+
+        .main_visual_slide .itm02 {
+            background: url(./images/main_content01.jpg);
+        }
+
+        .main_visual_slide .itm03 {
+            background: url(./images/main_content02.jpg) no-repeat center center/cover;
+        }
+    </style>
+
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <!-- <script src="./lib/js/swiper-bundle.min.js"></script> -->
+    <script src="./lib/js/jquery.mb.YTPlayer.min.js"></script>
+
+    <script type="text/javascript" src="http://daontheme.co.kr/theme/daontheme_simple12/html/css_js/swiper.js"></script>
+
+    <script>
+        $(function () {
+            const mvs = new Swiper('.main_visual_slide', {
+                loop: true,
+                on: {
+                    slideChangeTransitionStart: function () {
+                        $('#m_movie').YTPPause();
+                    },
+                    slideChangeTransitionEnd: function () {
+                        const idx = this.realIndex;
+                        console.log(idx)
+
+                        if (idx == 1) {
+                            $('#m_movie').YTPPlay();
+                        }
+                    }
+                }
+            });
+        });
+
+        $(function () {
+            $('#m_movie').YTPlayer({
+                videoURL: '1LZ1nXbjcFY',
+                containment: '.itm01',
+                showControls: false,
+                playOnlyIfVisible: true,
+            });
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <section class="main_visual">
+        <div class="main_visual_slide swiper">
+            <div class="swiper-wrapper">
+                <div class="itm itm02 swiper-slide">
+                    02
+                </div>
+                <div class="itm itm01 swiper-slide">
+                    <div class="main_movie">
+                        <div id="m_movie" class="player"></div>
+                    </div>
+                </div>
+
+                <div class="itm itm03 swiper-slide">
+                    03
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

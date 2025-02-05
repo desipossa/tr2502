@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 mp4</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./lib/css/jquery.mb.YTPlayer.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .main_visual_slide .itm {
+            height: 100vh;
+        }
+
+        .main_visual_slide .itm video {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .main_visual_slide .itm01 {
+            background: url(./images/main_content01.jpg) no-repeat center center/cover;
+        }
+
+        .main_visual_slide .itm02 {
+            background: url(./images/main_content01.jpg) no-repeat center center/cover;
+        }
+
+        .img_box {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: tomato;
+        }
+
+        .img_box .ctr {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 64px;
+            height: 64px;
+
+            background: url(./images/pause-circle.svg);
+        }
+
+        .img_box .ctr.on {
+            background: url(./images/play-circle.svg);
+        }
+    </style>
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <script src="./lib/js/swiper-bundle.min.js"></script>
+    <script src="./lib/js/jquery.mb.YTPlayer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="bgndVideo" class="player"></div>
+    <section class="main_visual">
+        <div class="main_visual_slide">
+            <div class="itm ">
+                <div class="img_box">
+                    <button class="ctr"></button>
+
+                </div>
+            </div>
+            <div class="itm itm01 "></div>
+            <div class="itm itm02 "></div>
+        </div>
+
+
+    </section>
+
+
+    <script>
+
+
+        $(function () {
+            $('#bgndVideo').YTPlayer({
+                videoURL: 'https://youtu.be/1LZ1nXbjcFY',
+                containment: '.img_box',
+                //showControls: false,
+            });
+
+            let sw = false;
+
+            $('.img_box .ctr').on('click', function () {
+                $(this).toggleClass('on');
+
+                if (sw) {
+                    $('#bgndVideo').YTPPlay()
+                } else {
+                    $('#bgndVideo').YTPPause()
+                }
+
+                sw = !sw;
+
+            })
+        });
+
+        $(function () {
+            $('.main_visual_slide').slick();
+            $('.main_visual_slide').on('afterChange', function () {
+                const current = $('.slick-current');
+
+                if (current) {
+                    $('#bgndVideo').YTPPlay()
+                } else {
+                    $('#bgndVideo').YTPPause()
+                }
+            })
+        })
+    </script>
+
+</body>
+
+
+
+</html>

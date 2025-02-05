@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 mp4</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <style>
+        .img_box video {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            vertical-align: top;
+        }
+
+        .img_box .ctr {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 64px;
+            height: 64px;
+
+            background: url(./images/pause-circle.svg);
+        }
+
+        .img_box .ctr.on {
+            background: url(./images/play-circle.svg);
+        }
+    </style>
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <div class="img_box">
+        <video src="./images/movie.mp4" autoplay loop muted playsinline></video>
+        <button class="ctr"></button>
+    </div>
+    <button class="pause">pause</button>
+    <button class="play">play</button>
+    <script>
+        $(function () {
+            $('.pause').on('click', function () {
+                $('.img_box video').trigger('pause')
+            });
+            $('.play').on('click', function () {
+                $('.img_box video').trigger('play')
+            });
+        });
+
+        $(function () {
+            let sw = false;
+
+            $('.img_box .ctr').on('click', function () {
+                $(this).toggleClass('on');
+
+                if (sw) {
+                    $('.img_box video').trigger('play')
+                } else {
+                    $('.img_box video').trigger('pause')
+                }
+
+                sw = !sw;
+
+            })
+        });
+
+    </script>
+</body>
+
+</html>

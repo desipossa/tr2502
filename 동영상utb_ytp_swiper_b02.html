@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 mp4</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./lib/css/jquery.mb.YTPlayer.min.css">
+
+    <style>
+        .main_visual {
+            position: relative;
+        }
+
+        .main_visual_slide .itm {
+            height: 75vh;
+        }
+
+
+        .main_visual_slide .itm01 {
+            background: url(./images/main_content01.jpg) no-repeat center center/cover;
+        }
+
+        .main_visual_slide .itm02 {
+            background: url(./images/main_content01.jpg);
+        }
+
+        .main_visual_slide .itm03 {
+            background: url(./images/main_content01.jpg) no-repeat center center/cover;
+        }
+
+        .mbox {
+            height: 75vh;
+            opacity: 0;
+            visibility: hidden;
+
+            position: absolute;
+            inset: 0 0 0 0;
+            z-index: 3;
+            transition: 0.5s;
+        }
+
+        .mbox.on {
+            opacity: 1;
+            visibility: visible;
+
+        }
+    </style>
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <script src="./lib/js/swiper-bundle.min.js"></script>
+    <script src="./lib/js/jquery.mb.YTPlayer.min.js"></script>
+</head>
+
+<body>
+    <section class="main_visual">
+        <div class="main_visual_slide swiper">
+            <div class="swiper-wrapper">
+                <div class="itm itm01 swiper-slide"></div>
+                <div class="itm itm02 swiper-slide"></div>
+                <div class="itm itm03 swiper-slide"></div>
+            </div>
+
+
+        </div>
+        <div class="mbox on"></div>
+        <div id="bgndVideo"></div>
+        <div class="arrows">
+            <button class="prev">prev</button>
+            <button class="next">next</button>
+        </div>
+    </section>
+
+
+    <script>
+
+        $(function () {
+            const mvs = new Swiper('.main_visual_slide', {
+                loop: true,
+                effect: 'fade',
+                touchRatio: 0,//드래그 금지
+                navigation: {
+                    nextEl: '.next',
+                    prevEl: '.prev',
+                },
+                on: {
+
+                    slideChangeTransitionEnd: function () {
+                        console.log(this.realIndex);
+
+                        const idx = this.realIndex;
+
+                        if (idx === 0) {
+                            $('#bgndVideo').YTPPlay();
+                            $('.mbox').addClass('on')
+                        } else {
+                            $('#bgndVideo').YTPPause();
+                            $('.mbox').removeClass('on')
+                        }
+                    }
+                }
+            })
+        })
+        $(function () {
+            $('#bgndVideo').YTPlayer({
+                videoURL: 'https://youtu.be/1LZ1nXbjcFY',
+                containment: '.mbox',
+                showControls: false,
+                loop: true,
+
+            });
+
+        })
+    </script>
+
+</body>
+
+
+
+</html>

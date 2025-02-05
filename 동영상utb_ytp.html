@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 mp4</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./lib/css/jquery.mb.YTPlayer.min.css">
+
+    <style>
+        .img_box {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: tomato;
+        }
+
+        .img_box .ctr {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 64px;
+            height: 64px;
+
+            background: url(./images/pause-circle.svg);
+        }
+
+        .img_box .ctr.on {
+            background: url(./images/play-circle.svg);
+        }
+    </style>
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <script src="./lib/js/swiper-bundle.min.js"></script>
+    <script src="./lib/js/jquery.mb.YTPlayer.min.js"></script>
+</head>
+
+<body>
+
+    <div class="img_box">
+        <button class="ctr"></button>
+        <div id="bgndVideo" class="player"></div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#bgndVideo').YTPlayer({
+                videoURL: 'https://youtu.be/1LZ1nXbjcFY',
+                containment: '.img_box',
+                showControls: false,
+            });
+
+            let sw = false;
+
+            $('.img_box .ctr').on('click', function () {
+                $(this).toggleClass('on');
+
+                if (sw) {
+                    $('#bgndVideo').YTPPlay()
+                } else {
+                    $('#bgndVideo').YTPPause()
+                }
+
+                sw = !sw;
+
+            })
+        })
+    </script>
+
+</body>
+
+
+
+</html>
