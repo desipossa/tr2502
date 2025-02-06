@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형만들기01</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/slick.css">
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <script src="./lib/js/slick.min.js"></script>
+
+    <style>
+        .solution_txt .itm {
+            display: none;
+        }
+
+        .solution_txt .itm.on {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="main_solution">
+        <div class="solution_wap">
+            <div class="itm">01</div>
+            <div class="itm">02</div>
+            <div class="itm">03</div>
+        </div>
+        <div class="solution_txt">
+            <div class="itm on">txt01</div>
+            <div class="itm">txt02</div>
+            <div class="itm">txt03</div>
+        </div>
+
+    </section>
+
+
+    <script>
+        $(function () {
+            $('.solution_wap').slick();
+
+            $('.solution_wap').on('afterChange', function (e, s, c) {
+                console.log(c);
+                $('.solution_txt .itm').removeClass('on');
+                $('.solution_txt .itm').eq(c).addClass('on');
+            })
+        });
+    </script>
+
+</body>
+
+</html>

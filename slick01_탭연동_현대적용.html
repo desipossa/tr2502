@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slick01_탭연동_현대적용</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/fonts.css">
+    <link rel="stylesheet" href="./lib/css/slick.css">
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <script src="./lib/js/slick.min.js"></script>
+
+    <style>
+        .default {
+            padding: 160px 0;
+            color: #444;
+        }
+
+        .default .title {
+            max-width: 1170px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
+
+        .default .title h2 {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .default .title p {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .main_solution_slide figure {
+            /* background: tan; */
+
+        }
+
+        .main_solution_slide figure img {
+            margin: 0 40px;
+            opacity: 0.25;
+        }
+
+        .main_solution_slide figure.slick-current img {
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+
+        .main_solution_wrap {
+            position: relative;
+        }
+
+        .main_solution_wrap .main_solution_box {
+            position: absolute;
+            top: -150px;
+            left: 0;
+
+            width: 320px;
+            height: 400px;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.25);
+
+            padding: 44px 32px 0 32px;
+        }
+
+        .main_solution_wrap .main_solution_box::before {
+            content: "";
+            position: absolute;
+            top: 64px;
+            left: 0;
+
+            width: 40px;
+            height: 2px;
+            background: #008820;
+
+            transform: translate(-50%, 0);
+        }
+
+        .main_solution_wrap .main_solution_box .desc {
+            display: none;
+
+        }
+
+        .main_solution_wrap .main_solution_box .desc.on {
+            display: block;
+        }
+
+        .main_solution_wrap .main_solution_box .desc strong {
+            display: block;
+            margin-bottom: 16px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .main_solution_wrap .main_solution_box .desc p {
+            margin-bottom: 40px;
+        }
+
+        .main_solution_wrap .slick-dots {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 16px;
+
+            height: 40px;
+        }
+
+        .main_solution_wrap .slick-dots li button {
+            width: 16px;
+            height: 16px;
+            background: #ddd;
+            font-size: 0;
+
+        }
+
+        .main_solution_wrap .slick-dots li.slick-active button {
+            background: #008850;
+        }
+
+        .main_solution .arrows {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+
+            transform: translate(-50%, -50%);
+            max-width: 1330px;
+            width: 100%;
+
+        }
+
+        .main_solution .arrows button {
+            position: absolute;
+            top: 0;
+            font-size: 0;
+            width: 160px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .main_solution .arrows .prev {
+            left: 0;
+        }
+
+        .main_solution .arrows .next {
+            right: 0;
+        }
+
+
+
+        .main_solution .arrows button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            right: 16px;
+            height: 2px;
+            background: #fff;
+        }
+
+        .main_solution .arrows button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+
+            width: 16px;
+            height: 2px;
+            background: #fff;
+
+
+        }
+
+        .main_solution .arrows .prev::after {
+            left: 16px;
+            transform: rotate(-45deg);
+            transform-origin: left;
+        }
+
+        .main_solution .arrows .next::after {
+            right: 16px;
+            transform: rotate(45deg);
+            transform-origin: right;
+        }
+
+        .solution_line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            max-width: 1010px;
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="main_solution default">
+        <div class="title">
+            <h2>클린 무빙 솔루션</h2>
+            <p>접촉 없이 편하게 이동합니다.</p>
+        </div>
+        <div class="main_solution_wrap">
+            <div class="main_solution_slide">
+                <figure>
+                    <img src="./images/main_solution01.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution02.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution03.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution04.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution01.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution02.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution03.jpg" alt="">
+                </figure>
+                <figure>
+                    <img src="./images/main_solution04.jpg" alt="">
+                </figure>
+            </div>
+            <div class="arrows">
+                <button class="prev">prev</button>
+                <button class="next">next</button>
+            </div>
+            <div class="solution_line">
+                <div class="main_solution_box">
+                    <div class="desc on">
+                        <strong>01. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>02. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>03. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>04. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>05. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>06. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>07. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                    <div class="desc">
+                        <strong>08. 터치리스 버튼</strong>
+                        <p>버튼 표면 접촉 없이, 홀을 통과하는 동작만으로 목적층을 등록하고 엘리베이터 호출이 가능합니다. 바이러스 전파 및 감염을 방지할 수 있어서 위생적입니다.</p>
+                        <a href="">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <script>
+        $(function () {
+            $('.main_solution_slide').slick({
+                centerMode: true,
+                variableWidth: true,
+                dots: true,
+                arrows: false,
+                // slidesToShow: 2,
+            });
+
+            $('.main_solution_slide').on('afterChange', function (e, s, c) {
+                console.log(c);
+                $('.main_solution_wrap .main_solution_box .desc').removeClass('on');
+                $('.main_solution_wrap .main_solution_box .desc').eq(c).addClass('on');
+            });
+
+
+            $('.main_solution .arrows .prev').on('click', function () {
+                $('.main_solution_slide').slick('slickPrev')
+            });
+            $('.main_solution .arrows .next').on('click', function () {
+                $('.main_solution_slide').slick('slickNext')
+            });
+        });
+    </script>
+
+</body>
+
+</html>

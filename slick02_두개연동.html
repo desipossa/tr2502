@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형만들기01</title>
+    <link rel="stylesheet" href="./lib/css/reset.css">
+    <link rel="stylesheet" href="./lib/css/slick.css">
+
+    <script src="./lib/js/jquery-1.12.4.js"></script>
+    <script src="./lib/js/slick.min.js"></script>
+
+    <style>
+        .math {
+            background: tomato;
+            max-width: calc((100% - 1170px) / 2 + 1170px);
+            margin-left: auto;
+        }
+
+        .inner {
+            max-width: 1170px;
+            margin: 0 auto;
+            background: tan;
+        }
+
+        .itm {
+            height: 400px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="math">01</div>
+    <div class="inner">02</div>
+
+    <section class="main_build">
+        <div class="build_wrap">
+            <div class="left">
+                <div class="left_slide">
+                    <div class="itm">l01</div>
+                    <div class="itm">l02</div>
+                    <div class="itm">l03</div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="right_slide">
+                    <div class="itm">r02</div>
+                    <div class="itm">r03</div>
+                    <div class="itm">r01</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        $(function () {
+            $('.left_slide').slick({
+                fade: true,
+                asNavFor: '.right_slide'
+            });
+            $('.right_slide').slick({
+                slidesToShow: 2,
+                asNavFor: '.left_slide'
+            });
+        });
+    </script>
+
+</body>
+
+</html>
